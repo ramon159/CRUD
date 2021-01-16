@@ -1,0 +1,37 @@
+
+*{margin: 0; padding: 0;text-decoration:none;}
+
+#top{
+    background-color: rgb(144, 0, 255);
+    display: flex;
+    align-items: center;
+    color: white;
+    float:auto;
+}
+
+#top a:link, a:visited, a:active, a:hover{text-decoration: none;color: white;}
+body{
+font-family: Alliance No\.1,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.menu{
+list-style:none;
+border:1px solid #c0c0c0;
+float:left;
+}
+.menu li{
+position:relative;
+float:left;
+border-right:1px solid #c0c0c0;
+}
+.menu li a{color:#333; text-decoration:none; padding:5px 10px; display:block;}
+
+.menu li a:hover{
+background:rgb(99, 99, 99);
+color:#fff;
+-moz-box-shadow:0 3px 10px 0 #CCC;
+-webkit-box-shadow:0 3px 10px 0 #ccc;
+text-shadow:0px 0px 5px #fff;
+}
+form {margin-left: 5px;}
+#btnSubmit{font-size: 20px;margin-top: 12px;width: 165px}
