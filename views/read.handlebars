@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Age </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    {{#data}}
+    <tr id="{{id}}">
+        <td> <strong>{{id}}</strong> </td>
+        <td>{{name}}</td> 
+        <td>{{age}}</td>
+        <td><input class= "name"type="text" value="{{name}}" style="display:none"></td>
+        <td><input class= "age"type="number" value="{{age}}" style="display:none"></td>
+        <td>
+        <input type="image"  title="editar" onclick="editData(this)" src="/img/edit.webp" width="20" height="20">
+        <input type="image" title="deletar" onclick="deleteData(this)" src="/img/delete.png" width="20" height="20">
+        </td>
+    </tr>
+    {{/data}}
+
+</table>

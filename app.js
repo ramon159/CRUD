@@ -13,7 +13,7 @@ const sql = mysql.createConnection({
     port: 3306,
     database: 'crud',
 });
-sql.query('use crud');
+
 //
 const log = (...arg) => console.log(...arg);
 
@@ -27,7 +27,7 @@ app.use('/js', express.static('js')) */
 app.get('/javascript', (req, res) => {
     res.sendFile(__dirname + '/js/javascript.js');
 });
-
+app.use('/img', express.static('img'))
 app.get('/style', (req, res) => {
     res.sendFile(__dirname + '/css/style.css');
 });
@@ -42,7 +42,9 @@ app.get('/update', (req, res) => {
     res.render('update');
 });
 app.get('/read', (req, res) => {
-    res.render('read');
+    sql.query("SELECT * FROM user", (error, result, fields) => {
+        res.render('read', {data: result});
+    })
 });
 app.get('/', (req, res) => {
 
@@ -52,14 +54,13 @@ app.post('/controllerForm', urlEncodeParser, (req, res) => {
     const r = req.body;
     const name = r.name;
     const age = r.age;
-    if (!isNaN(age) && name) {
+    if (!isNaN(age) && name && age > 0) {
         sql.query('insert into user (name, age) values (?,?)', [name, age]);
         console.log(`dados inseridos: ${name}, ${age}`)
         res.render('insert', {msg: " Dados inseridos com sucesso", code: 1})
     } else {
         res.render('insert', {msg: "Falha ao inserir dados", code: 0})
     }
-
 
 });
 
