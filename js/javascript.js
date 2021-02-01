@@ -1,11 +1,11 @@
-const sendData = function(url, method, data) {
+const sendData = function(url, method, data, callback) {
     axios({
   method: method, 
   url: url, 
   data: data
 })
 .then(response => {
-    console.log(response)
+    return callback(response.data);
 })
 .catch(error => {
     console.log(error)
@@ -28,10 +28,15 @@ const editData = (self) => {
         innerName.style.display = 'none';
         innerAge.style.display = 'none';
     } else {
-        sendData('/update', 'post', {id: tr.id, name: name.value, age: age.value})
-        innerAge.innerText = age.value;
-        innerName.innerText = name.value
-        console.log(name.value, age.value)
+
+        sendData('/update', 'post', {id: tr.id, name: name.value, age: age.value}, (response) => {
+            const data = response;
+            const {age, name} = data;
+            innerAge.innerText = age;
+            innerName.innerText = name;
+            console.log("update",name, age)
+        })
+       
 
         name.style.display = 'none';
         age.style.display = 'none';
@@ -41,12 +46,16 @@ const editData = (self) => {
     }
 };
 const deleteData = (self) => {
-    tr = self.parentNode.parentNode;
-    trId = tr.id;
-    table = tr.parentNode;
+    const tr = self.parentNode.parentNode;
+    const trId = tr.id;
+    const table = tr.parentNode;
     
     console.log(trId, tr, table)
-    sendData('/delete', 'post', {id: trId})
+    sendData('/delete', 'post', {id: trId}, (response) => {
+        const {id} = response;
+        console.log('delete', id)
+        table.removeChild(document.getElementById(id));
+    })
     
-    table.removeChild(tr);
+
 };
