@@ -6,7 +6,7 @@ const { isNumber } = require('util');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }))
-
+app.use(express.json());
 const port = 3000;
 const sql = mysql.createConnection({
     host: 'localhost',
