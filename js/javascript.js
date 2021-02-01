@@ -1,13 +1,16 @@
 const sendData = function(url, method, data) {
-    $.ajax({
-    url: url,
-    method: method,
-    data: data,
-    error: (err) => {console.log(err)}
-
+    axios({
+  method: method, 
+  url: url, 
+  data: data
 })
-console.log(url, method, data)
-}
+.then(response => {
+    console.log(response)
+})
+.catch(error => {
+    console.log(error)
+})
+};
 
 
 const editData = (self) => {

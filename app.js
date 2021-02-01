@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const handlebars = require('express-handlebars');
 const { isNumber } = require('util');
 
+
 const app = express();
 app.use(express.urlencoded({ extended: false }))
 
@@ -46,6 +47,7 @@ app.post('/update', (req, res) => {
     const id = r.id;
     const name = r.name;
     const age = r.age;
+    console.log(id,name,age);
     if (Number.isInteger(parseInt(id)) && Number.isInteger(parseInt(age)) && name) {
         sql.query("UPDATE user set name = ?, age = ? where id = ?", [name, age, id])
         console.log(`Dados atualizados: [${id}] `, name, age)
